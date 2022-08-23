@@ -136,3 +136,59 @@ alert('Falta '+contadordias+' dias')
 
     }
 
+//FECHAS HECHO POR LA PROFE
+function ejercicioFechas() {
+    let fecha1 = [prompt("dime el primer dia"), prompt("dime el primer mes")]
+    let fecha2 = [prompt("dime el segundo dia"), prompt("dime el segundo mes")];
+    let sumames = 0;
+    const meses30 = [4, 6, 9, 11];
+    function intercambiaFecha(f1, f2) {
+      return [[f2[0], f2[1]], [f1[0], f1[1]]];
+    }
+    function ordenaFechas(f1, f2) {
+      if (f2[1] == f1[1]) {
+        if (f2[0] < f1[0]) {
+          let fechas = intercambiaFecha(f1, f2);
+          f1[0] = fechas[0][0];
+          f1[1] = fechas[0][1];
+          f2[0] = fechas[1][0];
+          f2[1] = fechas[1][1];
+        }
+      } else {
+        if (f2[1] < f1[1]) {
+          let fechas = intercambiaFecha(f1, f2);
+          f1[0] = fechas[0][0];
+          f1[1] = fechas[0][1];
+          f2[0] = fechas[1][0];
+          f2[1] = fechas[1][1];
+        }
+      }
+    }
+    ordenaFechas(fecha1, fecha2);
+    if (fecha1[1] != fecha2[1]) {
+      for (let i = fecha1[1] - 1; i < (fecha2[1] - 1); i++) {
+        if (i == 2) {
+          sumames += 28;
+        } else {
+          if (i == meses30[0] || i == meses30[1] || i == meses30[2] || i == meses30[3]) {
+            sumames += 30;
+          } else {
+            sumames += 31;
+          }
+        }
+      }
+      if (fecha1[1] == 2) {
+        sumames += (28 - fecha1[0]);
+      } else {
+        if (fecha1[1] == meses30[0] || fecha1[1] == meses30[1] || fecha1[1] == meses30[2] || fecha1[1] == meses30[3]) {
+          sumames += (30 - fecha1[0]);
+        } else {
+          sumames += (31 - fecha1[0]);
+        }
+      }
+    }
+  
+    alert(sumames)
+    sumames = 0;
+  }
+  ejercicioFechas();
